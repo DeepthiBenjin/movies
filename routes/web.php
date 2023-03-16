@@ -11,8 +11,17 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
 |
-*/
+
 
 Route::get('/', function () {
     return view('welcome');
-});
+});*/
+
+//Route::get('/', [\App\Http\Controllers\AuthController::class, 'index']);
+
+Route::get('login', [\App\Http\Controllers\Auth\AuthController::class, 'index'])->name('login');
+Route::post('post-login', [\App\Http\Controllers\Auth\AuthController::class, 'postLogin'])->name('login.post'); 
+Route::get('registration', [\App\Http\Controllers\Auth\AuthController::class, 'registration'])->name('register');
+Route::post('post-registration', [\App\Http\Controllers\Auth\AuthController::class, 'postRegistration'])->name('register.post'); 
+Route::get('dashboard', [\App\Http\Controllers\Auth\AuthController::class, 'home']); 
+Route::get('logout', [\App\Http\Controllers\Auth\AuthController::class, 'logout'])->name('logout');
