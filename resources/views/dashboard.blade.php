@@ -13,8 +13,28 @@
                             {{ session('success') }}
                         </div>
                     @endif
-  
-                    You are Logged In
+                    Movie Lists
+                    <div>
+                        <table width="100%">
+                        <thead>
+                         <tr>
+                            <th> Movie Name</th>
+                            <th> Genre</th>
+                            <th> Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                             @foreach($movies as $val)
+                        <tr>
+                            <td> {{$val->moviename}} </td>
+                            <td> {{$val->moviegenre}} </td>
+                            <td><a href="/searchshows?val={{$val->movieid}}">Find shows for {{$val->moviename}} </td>
+                        </tr>
+                             @endforeach
+                        </tbody>
+                        </table>
+                    </div>
+                   
                 </div>
             </div>
         </div>

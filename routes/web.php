@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MovieController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,3 +26,9 @@ Route::get('registration', [\App\Http\Controllers\Auth\AuthController::class, 'r
 Route::post('post-registration', [\App\Http\Controllers\Auth\AuthController::class, 'postRegistration'])->name('register.post'); 
 Route::get('dashboard', [\App\Http\Controllers\Auth\AuthController::class, 'home']); 
 Route::get('logout', [\App\Http\Controllers\Auth\AuthController::class, 'logout'])->name('logout');
+
+Route::get('movies', [\App\Http\Controllers\Auth\AuthController::class, 'movies'])->name('movies');
+
+Route::get('dashboard', [MovieController::class, 'showmovies']); 
+
+
