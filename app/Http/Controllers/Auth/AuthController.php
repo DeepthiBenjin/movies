@@ -32,10 +32,12 @@ class AuthController extends Controller
    
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('dashboard')
+            $user = Auth::user();
+            return redirect()->intended($user,'dashboard')
                         ->withSuccess('You have Successfully loggedin');
         }
-  
+        
+        //return view('login',compact('user'));
         return redirect("login")->withSuccess('Oppes! You have entered invalid credentials');
     }
       
@@ -50,14 +52,15 @@ class AuthController extends Controller
         $data = $request->all();
         $check = $this->create($data);
          
-        return redirect("dashboard")->withSuccess('Great! You have Successfully loggedin');
+        return redirect("login")->withSuccess('Great! You have Successfully registered');
     }
 
     public function create(array $data)
-    {
+    { 
       return User::create([
         'name' => $data['name'],
         'email' => $data['email'],
+        'booking_ref' => time() . '-' . $data['name'],
         'password' => Hash::make($data['password'])
       ]);
     }

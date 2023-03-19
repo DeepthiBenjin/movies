@@ -29,6 +29,9 @@ Route::get('logout', [\App\Http\Controllers\Auth\AuthController::class, 'logout'
 
 Route::get('movies', [\App\Http\Controllers\Auth\AuthController::class, 'movies'])->name('movies');
 
+Route::get('/', [MovieController::class, 'showmovies']); 
+
 Route::get('dashboard', [MovieController::class, 'showmovies']); 
+Route::get('/searchshows', [MovieController::class, 'searchshows']); 
 
 
