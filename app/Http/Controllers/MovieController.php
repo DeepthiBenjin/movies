@@ -33,4 +33,23 @@ class MovieController extends Controller
             
         return view('showseats',compact('showseats')) ;
     }
+
+    public function booking(Request $request)
+    {  
+                  
+        $data = $request->all();
+        $check = $this->bookticket($data);
+         
+        return redirect("dashboard")->withSuccess('Great! You have Successfully booked tickets');
+    }
+
+    public function bookticket(array $data)
+    { 
+      return User::create([
+        'name' => $data['name'],
+        'email' => $data['email'],
+        'booking_ref' => time() . '-' . $data['name'],
+        'password' => Hash::make($data['password'])
+      ]);
+    }
 }
