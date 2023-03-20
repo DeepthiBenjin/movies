@@ -17,9 +17,20 @@ class MovieController extends Controller
     function searchshows(Request $request) {
         if(isset($request->val)) {
             
-            $shows = DB::select("select * from tbl_shows s, tbl_theatre t where s.movieid=? AND s.theatreid=t.theatreid",[$request->val]);
+            $shows = DB::select("select * from tbl_shows s, tbl_theatre t, tbl_movie m, tbl_location l where s.movieid=? 
+                                AND s.theatreid=t.theatreid AND m.movieid= s.movieid AND l.locationid= t.locationid",[$request->val]);
 
         }
         return view('showmovies',compact('shows')) ;
+    }
+
+    function showseats(Request $request) {
+        if(isset($request->showsid) && isset($request->theatreid)) {
+
+            $showseats = DB::select("select * from tbl_shows s, tbl_theatre t, tbl_movie m, tbl_location l where s.showsid=? AND s.theatreid=?
+            AND s.theatreid=t.theatreid AND m.movieid= s.movieid AND l.locationid= t.locationid",[$request->showsid,$request->theatreid]);
+        }
+            
+        return view('showseats',compact('showseats')) ;
     }
 }

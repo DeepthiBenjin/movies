@@ -32,6 +32,7 @@ Route::get('movies', [\App\Http\Controllers\Auth\AuthController::class, 'movies'
 Route::get('/', [MovieController::class, 'showmovies']); 
 
 Route::get('dashboard', [MovieController::class, 'showmovies']); 
-Route::get('/searchshows', [MovieController::class, 'searchshows']); 
+Route::get('/searchshows', [MovieController::class, 'searchshows']);
+Route::get('/showseats', [MovieController::class, 'showseats']);  
 
 
